@@ -2,8 +2,6 @@
     GanaderiApp
 </h1>
 
-<!-- ![demo](https://raw.githubusercontent.com/jilverprivera/RN-GreenPID/main/src/images/demo.png) -->
-
 ## 🧾 About the App
 
 GanaderiApp is a solution for all the people who work with animals in the field.
@@ -46,6 +44,7 @@ GanaderiApp is a solution for all the people who work with animals in the field.
     ```
 
 3.  **Running the project**
+
     *By the moment, App is only configured for Android devices (No money for iOS Devices 😅)*
 
     Let's open your terminal and go to the RN-GanaderiApp folder...
