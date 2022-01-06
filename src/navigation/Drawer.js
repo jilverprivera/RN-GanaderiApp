@@ -1,12 +1,21 @@
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import Animated from 'react-native-reanimated';
 import React, {useState} from 'react';
+import Animated from 'react-native-reanimated';
+import {StyleSheet} from 'react-native';
 
-import DrawerMenu from '../components/ui/DrawerMenu';
-import {AddNew, Detail, Home, List, Search, Resume} from '../screens/private';
+import DrawerMenu from '../components/core/drawerMenu';
+
+import {
+  AnalyticScreen,
+  DetailScreen,
+  HomeScreen,
+  ListScreen,
+  NewRegisterScreen,
+  ProfileScreen,
+  SearchScreen,
+} from '../screens/private';
 
 import {COLORS} from '../constants';
-import {menu} from '../components/ui/styles';
 
 const Drawer = createDrawerNavigator();
 
@@ -25,10 +34,9 @@ const DrawerNavigation = () => {
 
   return (
     <Drawer.Navigator
-      // hideStatusBar
       drawerType="slide"
       overlayColor="transparent"
-      drawerStyle={menu.global}
+      drawerStyle={styles.container}
       contentContainerStyle={{flex: 1}}
       drawerContentOptions={{
         activeBackgroundColor: 'transparent',
@@ -40,26 +48,38 @@ const DrawerNavigation = () => {
         setProgress(props.progress);
         return <DrawerMenu {...props} />;
       }}>
-      <Drawer.Screen name="home">
-        {props => <Home {...props} animated={animatedStyle} />}
+      <Drawer.Screen name="HomeScreen">
+        {props => <HomeScreen {...props} animated={animatedStyle} />}
       </Drawer.Screen>
-      <Drawer.Screen name="list">
-        {props => <List {...props} animated={animatedStyle} />}
+      <Drawer.Screen name="ProfileScreen">
+        {props => <ProfileScreen {...props} animated={animatedStyle} />}
       </Drawer.Screen>
-      <Drawer.Screen name="search">
-        {props => <Search {...props} animated={animatedStyle} />}
+      <Drawer.Screen name="ListScreen">
+        {props => <ListScreen {...props} animated={animatedStyle} />}
       </Drawer.Screen>
-      <Drawer.Screen name="detail">
-        {props => <Detail {...props} animated={animatedStyle} />}
+      <Drawer.Screen name="AnalyticScreen">
+        {props => <AnalyticScreen {...props} animated={animatedStyle} />}
       </Drawer.Screen>
-      <Drawer.Screen name="addNew">
-        {props => <AddNew {...props} animated={animatedStyle} />}
+      <Drawer.Screen name="NewRegisterScreen">
+        {props => <NewRegisterScreen {...props} animated={animatedStyle} />}
       </Drawer.Screen>
-      <Drawer.Screen name="resume">
-        {props => <Resume {...props} animated={animatedStyle} />}
+      <Drawer.Screen name="SearchScreen">
+        {props => <SearchScreen {...props} animated={animatedStyle} />}
+      </Drawer.Screen>
+
+      <Drawer.Screen name="DetailScreen">
+        {props => <DetailScreen {...props} animated={animatedStyle} />}
       </Drawer.Screen>
     </Drawer.Navigator>
   );
 };
 
 export default DrawerNavigation;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: '65%',
+    backgroundColor: COLORS.green,
+  },
+});
