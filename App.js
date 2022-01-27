@@ -5,13 +5,16 @@ import StackNavigation from './src/navigation/Stack';
 
 import {AuthProvider} from './src/context/AuthContext';
 import {AppProvider} from './src/context/AppContext';
+import {ThemeProvider} from './src/context/ThemeContext';
 
 const App = () => {
   return (
     <NavigationContainer>
       <AuthProvider>
         <AppProvider>
-          <StackNavigation />
+          <ThemeProvider>
+            <StackNavigation />
+          </ThemeProvider>
         </AppProvider>
       </AuthProvider>
     </NavigationContainer>
