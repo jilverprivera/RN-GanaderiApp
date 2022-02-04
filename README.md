@@ -2,7 +2,7 @@
     GanaderiApp
 </h1>
 
-## 🧾 About the App (Under progress)
+### 🧾 About the App (Under progress)
 
 GanaderiApp is a solution for all the people who work with animals in the field.
 The goal of this App is the management of all your animals (cows) I will add more over time and so see over time the graph with the total profit, the total invested, the percentage of margin.
@@ -12,14 +12,16 @@ GanaderiApp is a solution for all the people who work with animals in the field.
 
 ### 🔗 Links
 
-[Figma UI](https://www.figma.com/file/nlZSwlQPzrugCbj5ajydw3/GanaderiApp-UI)
-[Figma User Flow](https://www.figma.com/file/97WXpYnYLgHUZhPMCQNPY2/GanaderiApp-User-Flow)
+* [Figma UI](https://www.figma.com/file/nlZSwlQPzrugCbj5ajydw3/GanaderiApp-UI)
+
+* [Figma User Flow](https://www.figma.com/file/97WXpYnYLgHUZhPMCQNPY2/GanaderiApp-User-Flow)
 
 
 ### 🔧 Technologies
 
 1. Firebase
 2. React Native [React Native CLI]
+3. React reanimated
 
 ### 🎨 Theme Colors
 
