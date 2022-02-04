@@ -1,55 +1,61 @@
-import React, {useContext} from 'react';
-import {TouchableOpacity, View} from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import React from 'react';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {COLORS, SIZES} from '../../constants';
+import {UIStyle} from '../../styles';
 
-import {COLORS} from '../../constants';
-import {homeStyle} from '../../styles';
-import {AppContext} from '../../context/AppContext';
-
-const Buttons = () => {
-  const {buttons} = useContext(AppContext);
-
-  const {selected, setSelected} = buttons;
-
+const Buttons = ({selected, setSelected}) => {
   return (
-    <View style={homeStyle.btnContainer}>
+    <View style={styles.lastMovementsWrapper}>
       <TouchableOpacity
+        style={styles.movementBtn}
         activeOpacity={0.8}
-        style={{
-          ...homeStyle.btn,
-          backgroundColor: selected === 'animals' ? COLORS.green : COLORS.white,
-        }}
-        onPress={() => setSelected('animals')}>
-        <MaterialCommunityIcons name="cow" size={30} color={COLORS.black} />
+        onPress={() => setSelected('all')}>
+        <Text
+          style={{
+            ...UIStyle.semiBoldText,
+            color: selected === 'all' ? COLORS.green : COLORS.gray,
+          }}>
+          Todos
+        </Text>
       </TouchableOpacity>
-
       <TouchableOpacity
+        style={styles.movementBtn}
         activeOpacity={0.8}
-        style={{
-          ...homeStyle.btn,
-          backgroundColor: selected === 'gains' ? COLORS.green : COLORS.white,
-        }}
-        onPress={() => setSelected('gains')}>
-        <MaterialCommunityIcons
-          name="currency-usd"
-          size={30}
-          color={COLORS.black}
-        />
+        onPress={() => setSelected('profits')}>
+        <Text
+          style={{
+            ...UIStyle.semiBoldText,
+            color: selected === 'profits' ? COLORS.green : COLORS.gray,
+          }}>
+          Ingresos
+        </Text>
       </TouchableOpacity>
-
       <TouchableOpacity
+        style={styles.movementBtn}
         activeOpacity={0.8}
-        style={{
-          ...homeStyle.btn,
-          backgroundColor:
-            selected === 'analytics' ? COLORS.green : COLORS.white,
-        }}
-        onPress={() => setSelected('analytics')}>
-        <Ionicons name="analytics-outline" size={30} color={COLORS.black} />
+        onPress={() => setSelected('expenses')}>
+        <Text
+          style={{
+            ...UIStyle.semiBoldText,
+            color: selected === 'expenses' ? COLORS.green : COLORS.gray,
+          }}>
+          Gastos
+        </Text>
       </TouchableOpacity>
     </View>
   );
 };
 
 export default Buttons;
+
+const styles = StyleSheet.create({
+  lastMovementsWrapper: {
+    width: SIZES.width * 0.9,
+    alignSelf: 'center',
+    flexDirection: 'row',
+  },
+  movementBtn: {
+    paddingVertical: 10,
+    marginRight: 15,
+  },
+});
