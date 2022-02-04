@@ -1,7 +1,7 @@
 export const FONTS = {
-    light: "Inter-Light",
-    regular: "Inter-Regular",
-    medium: "Inter-Medium",
-    semibold: "Inter-SemiBold",
-    bold: "Inter-Bold",
+    light: "Montserrat-Light",
+    regular: "Montserrat-Regular",
+    medium: "Montserrat-Medium",
+    semibold: "Montserrat-SemiBold",
+    bold: "Montserrat-Bold",
 }

@@ -1,8 +1,17 @@
 export const COLORS = {
-  white: '#FFFFFF',
+  // <--- BACKGROUND COLORS --->
+  background: '#F7F7F7',
+  // <--- NEUTRAL COLORS --->
+  white: '#FCFCFC',
   gray: '#9E9E9E',
-  black: '#1D1D1D',
-  lime: '#D4FC79',
-  green: '#96E6A1',
-  background: '#FCFEFC',
+  black: '#0C0F16',
+  // <--- APPLICATION COLORS --->
+  green: '#06D6A0',
+  lime: '#99EE99',
+  yellow: '#FFD166',
+  red: '#EF476F',
+  blue: '#26547C',
+
+  // <--- AUXILIAR COLORS --->
+  auxiliar_primary: '#011E22',
 };
