@@ -2,78 +2,55 @@ import {StyleSheet} from 'react-native';
 import {COLORS, FONTS, SIZES} from '../constants';
 
 export const authStyle = StyleSheet.create({
-  title: {
-    position: 'absolute',
-    top: 15,
-    left: 0,
-    width: '100%',
-    textAlign: 'center',
-    fontSize: SIZES.large,
-    fontFamily: FONTS.bold,
-    color: COLORS.white,
-  },
-  wrapper: {
-    width: SIZES.width,
-    alignSelf: 'center',
-    marginTop: 75,
-    borderTopLeftRadius: 100,
+  container: {
     flex: 1,
-    backgroundColor: COLORS.white,
-    alignItems: 'center',
-    paddingHorizontal: 20,
-    justifyContent: 'center',
-  },
-  keyboardContent: {
     width: SIZES.width,
-    alignSelf: 'center',
-    marginTop: 75,
-    borderTopLeftRadius: 100,
-    backgroundColor: COLORS.white,
-    alignItems: 'center',
-    paddingHorizontal: 20,
+    display: 'flex',
     justifyContent: 'center',
-  },
-  inputWrapper: {
-    width: '100%',
-  },
-  inputText: {
-    width: '100%',
-    fontSize: SIZES.regular,
-    fontFamily: FONTS.medium,
-    color: COLORS.black,
-    marginVertical: 5,
-  },
-  inputSmallText: {
-    width: '100%',
-    fontSize: SIZES.small,
-    fontFamily: FONTS.regular,
-    color: COLORS.black,
-    marginVertical: 5,
-  },
-  textInput: {
-    width: '100%',
-    backgroundColor: COLORS.background,
-    padding: 10,
-    borderRadius: 10,
-    marginVertical: 0,
-    fontSize: SIZES.regular,
-    fontFamily: FONTS.regular,
-    color: COLORS.black,
-  },
-  authButton: {
-    width: '100%',
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: COLORS.lime,
-    padding: 20,
-    marginTop: 15,
-    borderTopLeftRadius: 10,
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
   },
-  authButtonText: {
+
+  backBtn: {
+    position: 'absolute',
+    left: 20,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  message: {
     color: COLORS.black,
     fontFamily: FONTS.semibold,
-    fontSize: SIZES.semiRegular,
+    fontSize: SIZES.large,
+    marginBottom: 5,
+  },
+  auxiliarMessage: {
+    color: COLORS.black,
+    fontFamily: FONTS.regular,
+    fontSize: SIZES.regular,
+    marginBottom: 30,
+  },
+
+  keyboardContainer: {
+    width: SIZES.width * 0.9,
+    alignSelf: 'center',
+  },
+
+  btnSign: {
+    // position: 'absolute',
+    // bottom: 50,
+    marginTop: 50,
+    width: SIZES.width * 0.9,
+    alignSelf: 'center',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: COLORS.green,
+    paddingVertical: 15,
+    marginTop: 50,
+    borderRadius: 20,
   },
 });

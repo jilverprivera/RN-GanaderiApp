@@ -1,8 +1,7 @@
-import {homeStyle} from './home.style';
 import {UIStyle} from './ui.style';
-import {Animal} from './animals.style';
-import {AddNewStyle} from './addNew';
 import {authStyle} from './auth.style';
-import {resumeStyle} from './resume.style';
+import {GLOBALS} from './global.style';
+import {coreStyles} from './core.styles';
+import {registerStyle} from './registers.style';
 
-export {homeStyle, UIStyle, Animal, AddNewStyle, authStyle, resumeStyle};
+export {GLOBALS, registerStyle, coreStyles, UIStyle,  authStyle};

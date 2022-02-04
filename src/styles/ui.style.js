@@ -2,40 +2,47 @@ import {StyleSheet} from 'react-native';
 import {COLORS, FONTS, SIZES} from '../constants';
 
 export const UIStyle = StyleSheet.create({
-  background: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: SIZES.width,
-    height: SIZES.height * 0.4,
-    backgroundColor: COLORS.lime,
-  },
-  header: {
-    position: 'relative',
-    width: SIZES.width * 0.9,
-    height: 50,
-    alignSelf: 'center',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-
-  global: {
+  animatedContainer: {
     flex: 1,
-    width: SIZES.width,
-    alignSelf: 'center',
-    alignItems: 'center',
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.background,
+    overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 6.27,
+    elevation: 10,
   },
 
   container: {
+    marginTop: 20,
     width: SIZES.width * 0.9,
     alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
-  text: {
+  // <--- TEXT --->
+  lightText: {
+    color: COLORS.black,
+    fontSize: SIZES.regular,
+    fontFamily: FONTS.light,
+  },
+  regularText: {
     color: COLORS.black,
     fontSize: SIZES.regular,
     fontFamily: FONTS.regular,
+  },
+  mediumText: {
+    color: COLORS.black,
+    fontSize: SIZES.regular,
+    fontFamily: FONTS.medium,
+  },
+  semiBoldText: {
+    color: COLORS.black,
+    fontSize: SIZES.regular,
+    fontFamily: FONTS.semibold,
   },
 });
