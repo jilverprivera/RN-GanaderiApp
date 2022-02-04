@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
-const Recovery = () => {
+const RecoveryScreen = () => {
   return (
     <View>
       <Text>Recovery</Text>
@@ -9,4 +9,4 @@ const Recovery = () => {
   );
 };
 
-export default Recovery;
+export default RecoveryScreen;

@@ -1,11 +1,18 @@
 import React from 'react';
-import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
+import {
+  ActivityIndicator,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 
 import {COLORS, FONTS, SIZES} from '../constants';
 
 const LoadingScreen = () => {
   return (
     <View style={styles.container}>
+      <StatusBar hidden />
       <ActivityIndicator size="large" color={COLORS.lime} />
       <Text style={styles.largeText}>Aguarde un momento...</Text>
       <Text style={styles.text}>Estamos verificando su información</Text>

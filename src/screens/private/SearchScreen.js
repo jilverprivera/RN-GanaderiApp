@@ -1,22 +1,19 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import Animated from 'react-native-reanimated';
-import Header from '../../components/ui/Header';
 import {COLORS} from '../../constants';
 import {UIStyle} from '../../styles';
 
-const Search = ({navigation, animated}) => {
+const SearchScreen = ({navigation, animated}) => {
   return (
     <Animated.View
       style={{
-        flex: 1,
-        backgroundColor: COLORS.white,
-        overflow: 'hidden',
+        ...UIStyle.animatedContainer,
         ...animated,
       }}>
-      <View style={UIStyle.container}></View>
+      <View></View>
     </Animated.View>
   );
 };
 
-export default Search;
+export default SearchScreen;

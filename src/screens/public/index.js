@@ -1,5 +1,6 @@
-import SignIn from './SignIn';
-import SignUp from './SignUp';
-import Recovery from './Recovery';
+import WelcomeScreen from './WelcomeScreen';
+import SignInScreen from './SignInScreen';
+import SignUpScreen from './SignUpScreen';
+import RecoveryScreen from './RecoveryScreen';
 
-export {SignIn, SignUp, Recovery};
+export {SignInScreen, SignUpScreen, RecoveryScreen, WelcomeScreen};
