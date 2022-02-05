@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import {StyleSheet, Switch, Text, TouchableOpacity, View} from 'react-native';
+import {Switch, Text, TouchableOpacity, View} from 'react-native';
 
 import {AppContext} from '../../context/AppContext';
 import {ThemeContext} from '../../context/ThemeContext';
@@ -31,7 +31,7 @@ const AnimalSold = ({date, setDate, onChange}) => {
         <Text style={GLOBALS.regularFamily}>¿Animal vendido?</Text>
         <Switch
           trackColor={{false: Colors.gray, true: Colors.gray}}
-          thumbColor={sold ? Colors.green : Colors.primary}
+          thumbColor={sold ? Colors.lime : Colors.primary}
           ios_backgroundColor={Colors.gray}
           onValueChange={() => handleAnimalSold()}
           value={sold}
@@ -41,7 +41,9 @@ const AnimalSold = ({date, setDate, onChange}) => {
         <>
           <View style={{...REGISTER_STYLES.dateContainer}}>
             <View>
-              <Text style={GLOBALS.lightFamily}>Fecha</Text>
+              <Text style={{...GLOBALS.mediumFamily, color: Colors.secondary}}>
+                Fecha de registro
+              </Text>
               <Text style={GLOBALS.semiBoldFamily}>
                 {date &&
                   `${date.getDate()} / ${
@@ -50,9 +52,13 @@ const AnimalSold = ({date, setDate, onChange}) => {
               </Text>
             </View>
             <TouchableOpacity
-              style={{...REGISTER_STYLES.btnDate}}
+              style={{
+                ...REGISTER_STYLES.btnDate,
+                backgroundColor: Colors.primary,
+              }}
               onPress={() => setShowDate(true)}>
-              <Text style={{...REGISTER_STYLES.btnDateText}}>
+              <Text
+                style={{...REGISTER_STYLES.btnDateText, color: Colors.yellow}}>
                 Establecer fecha
               </Text>
             </TouchableOpacity>
@@ -82,5 +88,3 @@ const AnimalSold = ({date, setDate, onChange}) => {
 };
 
 export default AnimalSold;
-
-const styles = StyleSheet.create({});

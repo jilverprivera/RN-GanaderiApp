@@ -1,31 +1,38 @@
 import React, {useContext} from 'react';
-import {Text, View, SafeAreaView, StyleSheet, ScrollView} from 'react-native';
+import {Text, View, StyleSheet, ScrollView} from 'react-native';
+import Animated from 'react-native-reanimated';
 
-import {GLOBALS} from '../../styles';
 import {AppContext} from '../../context/AppContext';
-import {SIZES} from '../../constants';
+import {ThemeContext} from '../../context/ThemeContext';
+import {Header} from '../../components/layout';
 import {
   Animal,
   Categories,
   Expenses,
   Profits,
 } from '../../components/registerScreen';
-import {ThemeContext} from '../../context/ThemeContext';
+import {SIZES} from '../../constants';
+import {GLOBALS} from '../../styles';
 
-const RegisterScreen = () => {
+const RegisterScreen = ({navigation, route, animated}) => {
   const {categories} = useContext(AppContext);
   const {Colors} = useContext(ThemeContext);
 
   return (
-    <SafeAreaView
-      style={{...GLOBALS.container, backgroundColor: Colors.background}}>
-      <View style={{...styles.header}}>
-        <View style={styles.wrapper}>
+    <Animated.View
+      style={{
+        ...GLOBALS.container,
+        ...animated,
+        backgroundColor: Colors.background,
+      }}>
+      <Header navigation={navigation} route={route} />
+      <View style={STYLES.pageTitle} >
+        <View style={STYLES.wrapper}>
           <View style={{marginBottom: 15}}>
-            <Text style={{...styles.text, color: Colors.secondary}}>
+            <Text style={{...STYLES.text, color: Colors.secondary}}>
               Añadir
             </Text>
-            <Text style={{...styles.text, color: Colors.secondary}}>
+            <Text style={{...STYLES.text, color: Colors.secondary}}>
               Nuevo registro
             </Text>
           </View>
@@ -33,20 +40,20 @@ const RegisterScreen = () => {
         </View>
       </View>
       <ScrollView
-        style={{...styles.container}}
+        style={{...STYLES.container}}
         showsVerticalScrollIndicator={false}>
         {categories === 0 && <Profits />}
         {categories === 1 && <Expenses />}
         {categories === 2 && <Animal />}
       </ScrollView>
-    </SafeAreaView>
+    </Animated.View>
   );
 };
 
 export default RegisterScreen;
 
-const styles = StyleSheet.create({
-  header: {
+const STYLES = StyleSheet.create({
+  pageTitle: {
     width: SIZES.width,
     borderBottomRightRadius: 50,
   },

@@ -8,8 +8,9 @@ import {useForm} from '../../hooks/useForm';
 import Input from '../core/input';
 import DatePicker from './DatePicker';
 
-import {UIStyle} from '../../styles';
+import {GLOBALS, UIStyle} from '../../styles';
 import {REGISTER_STYLES} from './styles';
+import SaveButton from './SaveButton';
 
 const Expenses = () => {
   const {firebase} = useContext(AppContext);
@@ -23,6 +24,32 @@ const Expenses = () => {
 
   return (
     <ScrollView>
+      <View style={REGISTER_STYLES.dateContainer}>
+        <View>
+          <Text style={{...GLOBALS.semiBoldFamily, color: Colors.secondary}}>
+            Fecha de registro
+          </Text>
+          <Text style={UIStyle.semiBoldText}>
+            {date &&
+              `${date.getDate()} / ${
+                date.getMonth() + 1
+              } / ${date.getFullYear()}`}
+          </Text>
+        </View>
+        <TouchableOpacity
+          style={{...REGISTER_STYLES.btnDate, backgroundColor: Colors.primary}}
+          onPress={() => setShowDate(true)}>
+          <Text style={{...REGISTER_STYLES.btnDateText, color: Colors.yellow}}>
+            Establecer fecha
+          </Text>
+        </TouchableOpacity>
+        <DatePicker
+          showDate={showDate}
+          setShowDate={setShowDate}
+          date={date || new Date()}
+          setDate={setDate}
+        />
+      </View>
       <Input onChange={onChange} valueType={'concept'} placeholder="Concepto" />
       <Input
         onChange={onChange}
@@ -35,36 +62,8 @@ const Expenses = () => {
         placeholder="Valor"
         keyboardType="decimal-pad"
       />
-      <View style={REGISTER_STYLES.dateContainer}>
-        <View>
-          <Text style={UIStyle.lightText}>Fecha</Text>
-          <Text style={UIStyle.semiBoldText}>
-            {date &&
-              `${date.getDate()} / ${
-                date.getMonth() + 1
-              } / ${date.getFullYear()}`}
-          </Text>
-        </View>
-        <TouchableOpacity
-          style={REGISTER_STYLES.btnDate}
-          onPress={() => setShowDate(true)}>
-          <Text style={REGISTER_STYLES.btnDateText}>Establecer fecha</Text>
-        </TouchableOpacity>
-        <DatePicker
-          showDate={showDate}
-          setShowDate={setShowDate}
-          date={date || new Date()}
-          setDate={setDate}
-        />
-      </View>
 
-      <TouchableOpacity
-        style={{...REGISTER_STYLES.btnSave, backgroundColor: Colors.green}}
-        onPress={() => newExpense({...form, date})}>
-        <Text style={{...UIStyle.semiBoldText, color: Colors.secondary}}>
-          Guardar
-        </Text>
-      </TouchableOpacity>
+      <SaveButton func={newExpense} form={form} date={date} />
     </ScrollView>
   );
 };

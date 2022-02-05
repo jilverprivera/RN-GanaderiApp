@@ -91,8 +91,9 @@ const Animal = () => {
         )}
       </View>
 
-      <AnimalSex />
-
+      <Text style={{...GLOBALS.semiBoldFamily, color: Colors.secondary}}>
+        Información básica
+      </Text>
       <KeyboardAvoidingView>
         <Input
           onChange={onChange}
@@ -105,17 +106,23 @@ const Animal = () => {
           placeholder="Observaciones"
         />
       </KeyboardAvoidingView>
-
+      <AnimalSex />
+      <Text style={{...GLOBALS.semiBoldFamily, color: Colors.secondary}}>
+        Información de origen
+      </Text>
       <AnimalBorn date={bornDate} setDate={setBornDate} onChange={onChange} />
       <AnimalPurchased
         date={purchasedDate}
         setDate={setPurchasedDate}
         onChange={onChange}
       />
+      <Text style={{...GLOBALS.semiBoldFamily, color: Colors.secondary}}>
+        Información de venta
+      </Text>
       <AnimalSold date={soldDate} setDate={setSoldDate} onChange={onChange} />
 
       <TouchableOpacity
-        style={{...REGISTER_STYLES.btnSave, backgroundColor: Colors.green}}
+        style={{...REGISTER_STYLES.btnSave, backgroundColor: Colors.lime}}
         onPress={() =>
           newAnimal({...form, ...animal, bornDate, soldDate, purchasedDate})
         }>

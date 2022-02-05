@@ -34,17 +34,20 @@ export const REGISTER_STYLES = StyleSheet.create({
     width: '100%',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    flexDirection: 'row',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    marginBottom: 20,
     // marginVertical: 15,
   },
   btnDate: {
+    marginTop: 10,
     paddingHorizontal: 15,
     paddingVertical: 15,
     borderRadius: 10,
   },
   btnDateText: {
     fontSize: SIZES.regular,
+    fontFamily: FONTS.medium 
   },
 
   btnSave: {

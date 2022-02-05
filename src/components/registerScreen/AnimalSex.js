@@ -37,7 +37,7 @@ const AnimalSex = () => {
             sex === 'male'
               ? {
                   ...REGISTER_STYLES.animalSexBtn,
-                  backgroundColor: Colors.gray,
+                  backgroundColor: Colors.background,
                 }
               : {...REGISTER_STYLES.animalSexBtn}
           }>
@@ -60,7 +60,7 @@ const AnimalSex = () => {
             sex === 'female'
               ? {
                   ...REGISTER_STYLES.animalSexBtn,
-                  backgroundColor: Colors.gray,
+                  backgroundColor: Colors.background,
                 }
               : {...REGISTER_STYLES.animalSexBtn}
           }>
@@ -84,4 +84,3 @@ const AnimalSex = () => {
 
 export default AnimalSex;
 
-const styles = StyleSheet.create({});
