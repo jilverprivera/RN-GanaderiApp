@@ -1,30 +1,24 @@
 import React, {useContext} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-
-import {GLOBALS} from '../../styles';
-import ProfileImage from '../../components/profile/profileImage';
-import {AuthContext} from '../../context/AuthContext';
-import {COLORS, FONTS, SIZES} from '../../constants';
-import {ThemeContext} from '../../context/ThemeContext';
-// import Button from '../../components/profile/button';
-// import DarkModeBtn from '../../components/profile/darkModeBtn';
-import {useHomeRoute} from '../../hooks/useHomeRoute';
-
+import {Text, TouchableOpacity, View} from 'react-native';
 import {PanGestureHandler} from 'react-native-gesture-handler';
 import Animated, {
-  //   useAnimatedGestureHandler,
-  //   useSharedValue,
-  //   useAnimatedStyle,
+  useAnimatedGestureHandler,
+  useSharedValue,
+  useAnimatedStyle,
   withSpring,
 } from 'react-native-reanimated';
-import Configuration from '../../components/profile/Configuration';
+
+import {AuthContext} from '../../context/AuthContext';
+import {ThemeContext} from '../../context/ThemeContext';
+import {Header} from '../../components/layout';
+import ProfileImage from '../../components/profile/profileImage';
+import Button from '../../components/profile/button';
+import DarkModeBtn from '../../components/profile/darkModeBtn';
+
+import {SIZES} from '../../constants';
+
+import {GLOBALS} from '../../styles';
+import {PROFILE_STYLES} from '../../components/profile/styles';
 
 const SPIRNG_CONFIG = {
   damping: 80,
@@ -34,75 +28,67 @@ const SPIRNG_CONFIG = {
   stiffness: 500,
 };
 
-const ProfileScreen = ({navigation, route}) => {
+const ProfileScreen = ({navigation, route, animated}) => {
   const {userState, SignOut} = useContext(AuthContext);
   const {userName} = userState;
-  const {isHome} = useHomeRoute(route);
-  const {darkMode, handleDarkMode, Colors} = useContext(ThemeContext);
+  const {Colors} = useContext(ThemeContext);
 
-  //   const top = useSharedValue(SIZES.height);
+  const top = useSharedValue(SIZES.height);
 
-  //   const style = useAnimatedStyle(() => {
-  //     return {
-  //       top: top.value,
-  //     };
-  //   });
-  //   const gestureHandler = useAnimatedGestureHandler({
-  //     onStart(_, context) {
-  //       context.startTop = top.value;
-  //     },
-  //     onActive(event, context) {
-  //       top.value = context.startTop + event.translationY;
-  //     },
-  //     onEnd() {
-  //       if (top.value > SIZES.height / 2 + 200) {
-  //         top.value = SIZES.height;
-  //       } else {
-  //         top.value = SIZES.height / 2;
-  //       }
-  //     },
-  //   });
+  const style = useAnimatedStyle(() => {
+    return {
+      top: top.value,
+    };
+  });
+  const gestureHandler = useAnimatedGestureHandler({
+    onStart(_, context) {
+      context.startTop = top.value;
+    },
+    onActive(event, context) {
+      top.value = context.startTop + event.translationY;
+    },
+    onEnd() {
+      if (top.value > SIZES.height / 2 + 200) {
+        top.value = SIZES.height;
+      } else {
+        top.value = SIZES.height / 2;
+      }
+    },
+  });
 
   return (
-    <SafeAreaView
-      style={{...GLOBALS.container, backgroundColor: Colors.background}}>
-      <View style={styles.container}>
+    <Animated.View
+      style={{
+        ...animated,
+        ...GLOBALS.container,
+        backgroundColor: Colors.background,
+      }}>
+      <Header navigation={navigation} route={route} />
+      <View style={PROFILE_STYLES.userContainer}>
         <ProfileImage />
         <View>
-          <Text style={styles.userName}>{userName}</Text>
-          <Text style={styles.userCategory}>Ganadero Amateur</Text>
+          <Text style={{...PROFILE_STYLES.userName, color: Colors.secondary}}>
+            {userName}
+          </Text>
+          {/* TODO: user Level */}
+          <Text
+            style={{...PROFILE_STYLES.userCategory, color: Colors.secondary}}>
+            Ganadero Amateur
+          </Text>
         </View>
       </View>
-      <TouchableOpacity onPress={() => {}}>
+      <TouchableOpacity
+        onPress={() => {
+          top.value = withSpring(SIZES.height * 0.5, SPIRNG_CONFIG);
+        }}>
         <Text>Open Sheet</Text>
       </TouchableOpacity>
-      <Configuration top={top} />
-      {/* <PanGestureHandler onGestureEvent={gestureHandler}>
+      <PanGestureHandler onGestureEvent={gestureHandler}>
         <Animated.View
           style={[
-            {
-              position: 'absolute',
-              left: 0,
-              bottom: 0,
-              right: 0,
-              backgroundColor: Colors.primary,
-              borderTopLeftRadius: 15,
-              borderTopRightRadius: 15,
-              overflow: 'hidden',
-              shadowColor: '#000',
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
-
-              elevation: 5,
-              padding: 20,
-              alignItems: 'center',
-              justifyContent: 'center',
-            },
             style,
+            PROFILE_STYLES.configurationContainer,
+            {backgroundColor: Colors.primary},
           ]}>
           <TouchableOpacity
             style={{
@@ -123,7 +109,7 @@ const ProfileScreen = ({navigation, route}) => {
                 width: 100,
                 borderWidth: 2,
                 borderColor: Colors.secondary,
-                borderRadius:3
+                borderRadius: 3,
               }}
             />
           </TouchableOpacity>
@@ -137,7 +123,10 @@ const ProfileScreen = ({navigation, route}) => {
             <TouchableOpacity
               activeOpacity={0.8}
               onPress={() => SignOut()}
-              style={{...styles.signOutBtn, backgroundColor: Colors.red}}>
+              style={{
+                ...PROFILE_STYLES.LogOutBtn,
+                backgroundColor: Colors.red,
+              }}>
               <Text
                 style={{...GLOBALS.semiBoldFamily, color: Colors.secondary}}>
                 Cerrar sesión
@@ -145,45 +134,9 @@ const ProfileScreen = ({navigation, route}) => {
             </TouchableOpacity>
           </View>
         </Animated.View>
-      </PanGestureHandler> */}
-    </SafeAreaView>
+      </PanGestureHandler>
+    </Animated.View>
   );
 };
 
 export default ProfileScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    width: SIZES.width * 0.8,
-    borderWidth: 1,
-
-    alignSelf: 'center',
-    paddingVertical: 40,
-    borderBottomRightRadius: 50,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-
-  userName: {
-    ...GLOBALS.semiBoldFamily,
-    textAlign: 'center',
-    fontSize: SIZES.medium,
-    color: COLORS.white,
-    marginBottom: 5,
-  },
-  userCategory: {
-    ...GLOBALS.lightFamily,
-    textAlign: 'center',
-    fontSize: SIZES.small,
-    color: COLORS.white,
-  },
-
-  signOutBtn: {
-    width: SIZES.width * 0.9,
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 20,
-    borderRadius: 20,
-  },
-});

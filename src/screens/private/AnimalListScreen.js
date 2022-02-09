@@ -10,7 +10,9 @@ import {SIZES} from '../../constants';
 import {Header} from '../../components/layout';
 
 const AnimalListScreen = ({navigation, route, animated}) => {
-  const {firebase, animals} = useContext(AppContext);
+  const {firebase, data} = useContext(AppContext);
+
+  const {animals} = data;
   const {getAnimals} = firebase;
   const {Colors} = useContext(ThemeContext);
 

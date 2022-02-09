@@ -26,7 +26,7 @@ export const registerStyle = StyleSheet.create({
 
   btnSave: {
     width: '100%',
-    backgroundColor: COLORS.green,
+    backgroundColor: COLORS.lime,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

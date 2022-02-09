@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {AuthContext} from '../../context/AuthContext';
 
@@ -45,17 +45,17 @@ const ProfileImage = () => {
   };
 
   return (
-    <TouchableOpacity
-      onPress={() => takePhotoFromGallery()}
-      onLongPress={() => takePhotoFromCamera()}
-      activeOpacity={0.8}
-      style={styles.container}>
+    <View
+      //   onPress={() => takePhotoFromGallery()}
+      //   onLongPress={() => takePhotoFromCamera()}
+      //   activeOpacity={0.8}
+      style={STYLES.container}>
       {!userImage ? (
         <Image
           source={{
             uri: 'https://medgoldresources.com/wp-content/uploads/2018/02/avatar-placeholder.gif',
           }}
-          style={styles.image}
+          style={STYLES.image}
           resizeMode="center"
         />
       ) : (
@@ -63,28 +63,27 @@ const ProfileImage = () => {
           source={{
             uri: userImage,
           }}
-          style={styles.image}
-          //   resizeMode="center"
+          style={STYLES.image}
         />
       )}
-    </TouchableOpacity>
+    </View>
   );
 };
 
 export default ProfileImage;
 
-const styles = StyleSheet.create({
+const STYLES = StyleSheet.create({
   container: {
-    width: 125,
-    height: 125,
+    width: 100,
+    height: 100,
     alignSelf: 'center',
     borderRadius: 62.5,
     overflow: 'hidden',
-    marginBottom: 10,
+    marginRight: 10,
   },
   image: {
-    width: 125,
-    height: 125,
+    width: 100,
+    height: 100,
     // borderRadius: 62.5,
   },
 });

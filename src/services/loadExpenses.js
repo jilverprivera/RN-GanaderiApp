@@ -4,7 +4,7 @@ export const loadExpenses = async uid => {
   const expenses = [];
 
   const expenseSnapshot = await firestore()
-    .collection(`Users/${uid}/profits`)
+    .collection(`Users/${uid}/expenses`)
     .get();
   expenseSnapshot.forEach(snap => {
     expenses.push({id: snap.id, ...snap.data()});

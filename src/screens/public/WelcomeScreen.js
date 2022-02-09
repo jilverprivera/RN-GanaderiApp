@@ -29,7 +29,7 @@ const WelcomeScreen = ({navigation}) => {
         <View style={styles.btnWrapper}>
           <TouchableOpacity
             activeOpacity={0.8}
-            style={{...styles.btn, backgroundColor: COLORS.green}}
+            style={{...styles.btn, backgroundColor: COLORS.lime}}
             onPress={() => navigation.navigate('SignInScreen')}>
             <Text style={{...styles.btnText, color: COLORS.white}}>
               Iniciar sesión

@@ -20,7 +20,9 @@ const Profits = () => {
   const [date, setDate] = useState(null);
   const [showDate, setShowDate] = useState(false);
 
-  const {form, onChange} = useForm({concept: '', description: '', value: ''});
+  const {form, onChange} = useForm({concept: '', description: '', value: 0});
+  const {concept, description, value} = form;
+
 
   return (
     <ScrollView>
@@ -64,7 +66,13 @@ const Profits = () => {
         keyboardType="decimal-pad"
       />
 
-      <SaveButton func={newProfit} form={form} date={date} />
+      <TouchableOpacity
+        style={{...REGISTER_STYLES.btnSave, backgroundColor: Colors.lime}}
+        onPress={() => newProfit({...form, date})}>
+        <Text style={{...GLOBALS.semiBoldFamily, color: Colors.secondary}}>
+          Guardar
+        </Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 };

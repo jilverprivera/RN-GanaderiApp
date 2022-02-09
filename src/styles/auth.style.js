@@ -48,7 +48,7 @@ export const authStyle = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: COLORS.green,
+    backgroundColor: COLORS.lime,
     paddingVertical: 15,
     marginTop: 50,
     borderRadius: 20,

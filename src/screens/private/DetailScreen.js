@@ -9,9 +9,7 @@ import {GLOBALS} from '../../styles';
 
 const DetailScreen = ({route, navigation}) => {
   const {Colors} = useContext(ThemeContext);
-//   const {name, uri} = route.params;
-
-//   console.log(route.params);
+  //   const {name, uri} = route.params;
 
   return (
     <Animated.View

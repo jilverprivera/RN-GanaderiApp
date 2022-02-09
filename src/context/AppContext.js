@@ -4,6 +4,8 @@ import storage from '@react-native-firebase/storage';
 import {AuthContext} from './AuthContext';
 import {Alert} from 'react-native';
 import {loadAnimals} from '../services/loadAnimals';
+import {loadEarnings} from '../services/loadEarnings';
+import {loadExpenses} from '../services/loadExpenses';
 
 const animalState = {
   sex: 'male',
@@ -20,25 +22,49 @@ export const AppProvider = ({children}) => {
   const {userState} = useContext(AuthContext);
   const {userID} = userState;
 
-  const [animals, setAnimals] = useState(null);
   const [animal, setAnimal] = useState(animalState);
+
+  const [animals, setAnimals] = useState(null);
+  const [earnings, setEarnings] = useState(null);
+  const [expenses, setExpenses] = useState(null);
+
   const [categories, setCategories] = useState(0);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
+  // <----- GETTING APPLICATION DATA ------>
 
-  //   // <----- QUERYS ------>
-  useEffect(() => {
-    getAnimals();
-  }, [userID]);
-
-  //   // <----- FIREBASE FUNCTIONS ------>
   const getAnimals = async () => {
     if (userID) {
       const animals = await loadAnimals(userID);
       setAnimals(animals);
     }
   };
+  const getEarnings = async () => {
+    if (userID) {
+      const earnings = await loadEarnings(userID);
+      setEarnings(earnings);
+    }
+  };
+  const getExpenses = async () => {
+    if (userID) {
+      const expenses = await loadExpenses(userID);
+      setExpenses(expenses);
+    }
+  };
+
+  // <----- QUERYS ------>
+  useEffect(() => {
+    getAnimals();
+  }, [userID]);
+  useEffect(() => {
+    getExpenses();
+  }, [userID]);
+  useEffect(() => {
+    getEarnings();
+  }, [userID]);
+
+  // <----- FIREBASE FUNCTIONS ------>
 
   const uploadImage = async () => {
     let animalPath = `${userID}/animals/${animal.filename}`;
@@ -69,14 +95,16 @@ export const AppProvider = ({children}) => {
   };
 
   const newProfit = async data => {
+    const {concept, description, value} = data;
     await firestore()
-      .collection(`Users/${userID}/profits`)
-      .add({...data})
+      .collection(`Users/${userID}/earnings`)
+      .add({concept: concept, description: description, value: Number(value)})
       .then(() => {
         Alert.alert(
-          'Mensaje',
-          'Tu ingreso ha sido añadido satisfactoriamente.',
+          'Ingreso añadido',
+          'Tu ingreso se añadió satisfactoriamente.',
         );
+        getEarnings();
       })
       .catch(() =>
         Alert.alert(
@@ -91,10 +119,8 @@ export const AppProvider = ({children}) => {
       .collection(`Users/${userID}/expenses`)
       .add({...data})
       .then(() => {
-        Alert.alert(
-            'Mensaje',
-            'Tu gasto ha sido añadido satisfactoriamente.',
-        );
+        Alert.alert('Gasto añadido', 'Tu gasto se añadió satisfactoriamente.');
+        getExpenses();
       })
       .catch(() =>
         Alert.alert(
@@ -106,22 +132,12 @@ export const AppProvider = ({children}) => {
 
   // <----- STATE ------>
   const state = {
-    modal: {
-      modalIsOpen,
-      setModalIsOpen,
-    },
+    data: {earnings, expenses, animals, getEarnings, getExpenses, getAnimals},
+    modal: {modalIsOpen, setModalIsOpen},
     animal,
     setAnimal,
 
-    animals,
-    setAnimals,
-
-    firebase: {
-      newAnimal,
-      newProfit,
-      newExpense,
-      getAnimals,
-    },
+    firebase: {newAnimal, newProfit, newExpense, getAnimals},
 
     categories,
     setCategories,
